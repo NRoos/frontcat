@@ -40,7 +40,7 @@ const CardWrap = styled.div`
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 
   :hover {
-    color: red;
+    color: purple;
     box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
     transform: scale(1.03);
   }
@@ -51,6 +51,7 @@ const CardWrap = styled.div`
       "origin"
       "description"
       "temperament";
+    grid-template-columns: 1fr;
   }
 `;
 
