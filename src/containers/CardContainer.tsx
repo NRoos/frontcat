@@ -1,6 +1,9 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
+import { v4 } from 'uuid';
+
 import Card from '../components/Card';
+import getBreeds from '../util/api';
 
 type Breed = {
   id: Number,
@@ -10,27 +13,22 @@ type Breed = {
   origin: String,
 };
 
-const breeds: Breed[] = [
-  {
-    id: 1,
-    name: 'tabby',
-    description: 'very annyoing, also ugly',
-    temperament: 'not very high at all',
-    origin: 'unknown',
-  },
-  {
-    id: 2,
-    name: 'not-tabby',
-    description: 'very annyoing, also very pretty, also we need a lot longer text',
-    temperament: 'haha yes',
-    origin: 'tabby',
-  },
-];
-
 const CardContainer = (): JSX.Element => {
+  const [filter, setFilter] = useState('');
+  const [breeds, setBreeds] = useState<Breed[]>([]);
+
+  useEffect(() => {
+    getBreeds((breeds: Breed[]) => setBreeds(breeds));
+  }, []);
+
+
+  const sortedBreeds = breeds.length > 0 && filter.length >  0
+    ? breeds.filter(b => b.origin === filter)
+    : breeds
+
   return <Container>
-    {breeds.length > 0
-      ? breeds.map(b => <Card breed={b} />)
+    {sortedBreeds.length > 0
+      ? sortedBreeds.map(b => <Card key={v4()} breed={b} />)
       : <NotFound> No breeds found </NotFound>
     }
     </Container>

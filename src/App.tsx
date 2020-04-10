@@ -1,12 +1,19 @@
 import React from 'react';
+import styled from 'styled-components';
 import CardContainer from './containers/CardContainer';
+import SidebarContainer from './containers/SidebarContainer';
 
 function App() {
   return (
-    <div className="App">
+    <AppWrap>
+      <SidebarContainer />
       <CardContainer />
-    </div>
+    </AppWrap>
   );
 }
+
+const AppWrap = styled.div`
+  width: 100vw;
+`; 
 
 export default App;

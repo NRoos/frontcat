@@ -18,30 +18,38 @@ const Card = ({ breed }: { breed: Breed }) => {
   } = breed;
   return (
     <CardWrap>
-      <Title> { name } </Title>
-      <Description> { description } </Description>
-      <Temperament> { temperament } </Temperament>
-      <Origin> { origin } </Origin>
+      <Title> name: { name } </Title>
+      <Description>  description: { description } </Description>
+      <Temperament> temperament: { temperament } </Temperament>
+      <Origin> origin: { origin } </Origin>
     </CardWrap>
   );
 }
 
 const Item = styled.div`
   padding: 4px;
+  margin: 8px 0;
 `;
 
-const CardWrap = styled(Item)`
+const CardWrap = styled.div`
   display: grid;
+  padding: 8px;
+  margin: 10px;
   grid-template-areas:
     "title origin"
     "description description"
-    "temperament .";
+    "temperament temperament";
 
   grid-template-columns: 4fr 2fr;
-  border: 1px solid red;
-  max-width: 750px;
-  width: 90vw;
-  border-radius: 15px;
+  width: 90%;
+  max-width: 700px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
+
+  :hover {
+    color: red;
+    box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
+    transform: scale(1.03);
+  }
 `;
 
 const Temperament = styled(Item)`
