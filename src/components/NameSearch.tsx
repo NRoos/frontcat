@@ -15,7 +15,7 @@ const NameSearch = (props: NameSearchProps) => {
 
   const handleSubmit = (text: string) => {
     if (text.trim() === '') return getBreeds((breeds: Breed[]) => callback(breeds));
-    getByName(text, (breed: Breed) => callback([breed]));
+    getByName(text, (breed: Breed) => callback(breed));
   }
 
   return <Form onSubmit={(e) => {
