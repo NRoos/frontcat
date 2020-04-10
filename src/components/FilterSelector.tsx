@@ -56,7 +56,7 @@ const Selector = styled.div`
   width: 95%;
   max-width: 720px;
   display: grid;
-  grid-template-columns: 210px 1fr;
+  grid-template-columns: 120px 1fr;
   align-items: center;
 `;
 
