@@ -1,5 +1,6 @@
 import React from 'react';
 import styled from 'styled-components';
+import { v4 } from 'uuid';
 
 import { Option } from '../types';
 
@@ -17,7 +18,7 @@ const FilterSelector = (props: FilterSelectorProps) => {
   return <Wrap>
     Filter: 
     <Select onChange={(e) => onSelect(e.currentTarget.value)}>
-      {options.map(o => <option value={o.value}> {o.value} </option>)}
+      {options.map(o => <option key={v4()} value={o.value}> {o.value} </option>)}
     </Select>
   </Wrap>
 };
