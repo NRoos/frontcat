@@ -1,44 +1,62 @@
 import React from 'react';
 import styled from 'styled-components';
 import { v4 } from 'uuid';
-
-import { Option } from '../types';
+import { IoIosArrowDown } from "react-icons/io";
 
 type FilterSelectorProps = {
-  options: Option[],
+  options: string[],
   onSelect: Function,
+  value: string,
 }
 
 const FilterSelector = (props: FilterSelectorProps) => {
   const {
     options,
     onSelect,
+    value, 
   } = props;
 
-  return <Wrap>
-    Filter: 
-    <Select onChange={(e) => onSelect(e.currentTarget.value)}>
-      {options.map(o => <option key={v4()} value={o.value}> {o.value} </option>)}
-    </Select>
-  </Wrap>
+  return <Selector>
+    Filter by origin: 
+    <SelectWrap>
+      <Select value={value} onChange={(e) => onSelect(e.currentTarget.value)}>
+        {options.map(o => <option key={v4()} value={o}> {o} </option>)}
+      </Select>
+      <IconWrap>
+        <IoIosArrowDown />
+      </IconWrap>
+    </SelectWrap>
+  </Selector>
 };
 
 const Select = styled.select`
-  height: 50px;
-  font-size: 16px;
+  appearance: none;
+  border: 0;
   padding: 4px 12px;;
-  margin: 4px;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  -o-appearance: none;
-  border: 1px solid #DFDFDF;
+  font-size: 20px;
+  height: 100%;
 `; 
 
-const Wrap = styled.div`
+const IconWrap = styled.div`
+  position: relative;
+  right: 40px;
+`;
+
+const SelectWrap = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 0px;
+  align-items: center;
+  border: 1px solid #DFDFDF;
+  height: 50px;
+  font-size: 20px;
+  margin: 4px;
+`;
+
+const Selector = styled.div`
   width: 95%;
   max-width: 720px;
   display: grid;
-  grid-template-columns: 80px 1fr;
+  grid-template-columns: 210px 1fr;
   align-items: center;
 `;
 

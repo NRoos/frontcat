@@ -7,19 +7,17 @@ import FilterSelector from '../components/FilterSelector';
 import NameSearch from '../components/NameSearch';
 import { getBreeds, getByName } from '../util/api';
 
-import { Breed, Option } from '../types';
+import { Breed } from '../types';
 
-const formOptions = (breeds: Breed[]): Option[] => {
-  return [{ value: 'All'}].concat(breeds.map(breed => {
-    return { value: breed.origin }
-  }));
+const formOptions = (breeds: Breed[]): string[] => {
+  const all = ['All'].concat(breeds.map(breed => breed.origin));
+  return Array.from(new Set(all));
 }
 
 
 const CardContainer = (): JSX.Element => {
   const [filter, setFilter] = useState('All');
   const [breeds, setBreeds] = useState<Breed[]>([]);
-  const options = formOptions(breeds);
 
   useEffect(() => {
     getBreeds((breeds: Breed[]) => setBreeds(breeds));
@@ -37,7 +35,7 @@ const CardContainer = (): JSX.Element => {
     : breeds
 
   return <Container>
-    <FilterSelector options={options} onSelect={setFilter} />
+    <FilterSelector value={filter} options={formOptions(breeds)} onSelect={setFilter} />
     <NameSearch callback={searchByName} />
     {sortedBreeds.length > 0
       ? sortedBreeds.map((b: Breed) => <Card key={v4()} breed={b} />)
@@ -47,6 +45,7 @@ const CardContainer = (): JSX.Element => {
 };
 
 const Container = styled.div`
+  margin-top: 15px;
   display: grid;
   justify-items: center;
 `;

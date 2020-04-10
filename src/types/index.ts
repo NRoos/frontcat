@@ -5,7 +5,3 @@ export type Breed = {
   temperament: string,
   origin: string,
 };
-
-export type Option = {
-  value: string,
-}
