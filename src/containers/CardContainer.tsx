@@ -5,7 +5,7 @@ import { v4 } from 'uuid';
 import Card from '../components/Card';
 import FilterSelector from '../components/FilterSelector';
 import NameSearch from '../components/NameSearch';
-import { getBreeds } from '../util/api';
+import { getBreeds, getByName } from '../util/api';
 
 import { Breed, Option } from '../types';
 
@@ -30,7 +30,12 @@ const CardContainer = (): JSX.Element => {
 
   return <Container>
     <FilterSelector options={options} onSelect={setFilter} />
-    <NameSearch callback={setBreeds} />
+    <NameSearch callback={(name: String) => {
+      if(name === '') getBreeds((breeds: Breed[]) => setBreeds(breeds));
+      getByName(name, (breed: Breed) => {
+        setBreeds([breed]);
+      });
+    }} />
     {sortedBreeds.length > 0
       ? sortedBreeds.map((b: Breed) => <Card key={v4()} breed={b} />)
       : <NotFound> No breeds found </NotFound>
