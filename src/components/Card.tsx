@@ -1,13 +1,7 @@
 import React from 'react';
 import styled from 'styled-components'; 
 
-type Breed = {
-  id: Number,
-  name: String,
-  description: String,
-  temperament: String,
-  origin: String,
-};
+import { Breed } from '../types';
 
 const Card = ({ breed }: { breed: Breed }) => {
   const {

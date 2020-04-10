@@ -5,17 +5,18 @@ import { v4 } from 'uuid';
 import Card from '../components/Card';
 import getBreeds from '../util/api';
 
-type Breed = {
-  id: Number,
-  name: String,
-  description: String,
-  temperament: String,
-  origin: String,
-};
+import { Breed, option } from '../types';
+
+const formOptions = (breeds: Breed[]): option[] => {
+  return [{ value: 'All'}].concat(breeds.map(breed => {
+    return { value: breed.origin }
+  }));
+}
 
 const CardContainer = (): JSX.Element => {
   const [filter, setFilter] = useState('');
   const [breeds, setBreeds] = useState<Breed[]>([]);
+  const options = formOptions(breeds);
 
   useEffect(() => {
     getBreeds((breeds: Breed[]) => setBreeds(breeds));
