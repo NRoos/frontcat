@@ -3,6 +3,7 @@ import styled from 'styled-components';
 import { v4 } from 'uuid';
 
 import Card from '../components/Card';
+import FilterSelector from '../components/FilterSelector'
 import getBreeds from '../util/api';
 
 import { Breed, option } from '../types';
@@ -14,7 +15,7 @@ const formOptions = (breeds: Breed[]): option[] => {
 }
 
 const CardContainer = (): JSX.Element => {
-  const [filter, setFilter] = useState('');
+  const [filter, setFilter] = useState('All');
   const [breeds, setBreeds] = useState<Breed[]>([]);
   const options = formOptions(breeds);
 
@@ -22,14 +23,14 @@ const CardContainer = (): JSX.Element => {
     getBreeds((breeds: Breed[]) => setBreeds(breeds));
   }, []);
 
-
-  const sortedBreeds = breeds.length > 0 && filter.length >  0
-    ? breeds.filter(b => b.origin === filter)
+  const sortedBreeds = breeds.length > 0 && filter !== 'All'
+    ? breeds.filter((b: Breed) => b.origin === filter)
     : breeds
 
   return <Container>
+    <FilterSelector options={options} onSelect={setFilter} />
     {sortedBreeds.length > 0
-      ? sortedBreeds.map(b => <Card key={v4()} breed={b} />)
+      ? sortedBreeds.map((b: Breed) => <Card key={v4()} breed={b} />)
       : <NotFound> No breeds found </NotFound>
     }
     </Container>

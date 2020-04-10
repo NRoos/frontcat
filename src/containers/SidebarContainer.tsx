@@ -18,6 +18,7 @@ const Title = styled.h1`
   padding: 0;
   margin: 0;
   justify-self: center;
+  align-self: center;
 `;
 
 export default SidebarContainer;

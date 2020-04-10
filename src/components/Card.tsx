@@ -44,6 +44,14 @@ const CardWrap = styled.div`
     box-shadow: 0px 8px 10px rgba(0, 0, 0, 0.25);
     transform: scale(1.03);
   }
+
+  @media screen and (max-width: 750px) {
+    grid-template-areas:
+      "title"
+      "origin"
+      "description"
+      "temperament";
+  }
 `;
 
 const Temperament = styled(Item)`
