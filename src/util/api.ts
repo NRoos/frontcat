@@ -1,4 +1,4 @@
-const url = process.env.URL || 'http://localhost:8001';
+const url = process.env.REACT_APP_URL || 'http://localhost:8001';
 
 const getBreeds = async (callback: Function) => {
  return fetch(`${url}/breeds`)
