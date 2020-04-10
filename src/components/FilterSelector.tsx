@@ -1,10 +1,10 @@
 import React from 'react';
 import styled from 'styled-components';
 
-import { option } from '../types';
+import { Option } from '../types';
 
 type FilterSelectorProps = {
-  options: option[],
+  options: Option[],
   onSelect: Function,
 }
 

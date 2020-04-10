@@ -6,6 +6,6 @@ export type Breed = {
   origin: string,
 };
 
-export type option = {
+export type Option = {
   value: string,
 }

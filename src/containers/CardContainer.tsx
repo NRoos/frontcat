@@ -3,12 +3,13 @@ import styled from 'styled-components';
 import { v4 } from 'uuid';
 
 import Card from '../components/Card';
-import FilterSelector from '../components/FilterSelector'
-import getBreeds from '../util/api';
+import FilterSelector from '../components/FilterSelector';
+import NameSearch from '../components/NameSearch';
+import { getBreeds } from '../util/api';
 
-import { Breed, option } from '../types';
+import { Breed, Option } from '../types';
 
-const formOptions = (breeds: Breed[]): option[] => {
+const formOptions = (breeds: Breed[]): Option[] => {
   return [{ value: 'All'}].concat(breeds.map(breed => {
     return { value: breed.origin }
   }));
@@ -29,6 +30,7 @@ const CardContainer = (): JSX.Element => {
 
   return <Container>
     <FilterSelector options={options} onSelect={setFilter} />
+    <NameSearch callback={setBreeds} />
     {sortedBreeds.length > 0
       ? sortedBreeds.map((b: Breed) => <Card key={v4()} breed={b} />)
       : <NotFound> No breeds found </NotFound>
