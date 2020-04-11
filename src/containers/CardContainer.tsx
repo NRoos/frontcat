@@ -14,7 +14,6 @@ const formOptions = (breeds: Breed[]): string[] => {
   return Array.from(new Set(all));
 }
 
-
 const CardContainer = (): JSX.Element => {
   const [filter, setFilter] = useState('All');
   const [breeds, setBreeds] = useState<Breed[]>([]);
@@ -35,23 +34,44 @@ const CardContainer = (): JSX.Element => {
     : breeds
 
   return <Container>
-    <FilterSelector value={filter} options={formOptions(breeds)} onSelect={setFilter} />
-    <NameSearch callback={searchByName} />
-    {sortedBreeds.length > 0
-      ? sortedBreeds.map((b: Breed) => <Card key={v4()} breed={b} />)
-      : <NotFound> No breeds found </NotFound>
-    }
+    <Actions>
+      <FilterSelector value={filter} options={formOptions(breeds)} onSelect={setFilter} />
+      <NameSearch callback={searchByName} />
+    </Actions>
+    <Cards>
+      {sortedBreeds.length > 0
+        ? sortedBreeds.map((b: Breed) => <Card key={v4()} breed={b} />)
+        : <NotFound> No breeds found </NotFound>
+      }
+    </Cards>
     </Container>
 };
 
 const Container = styled.div`
-  margin-top: 15px;
   display: grid;
-  justify-items: center;
+  max-width: 1200px;
+  width: 95%;
+  column-gap: 20px;
+
+  @media screen and (min-width: 720px) {
+    grid-template-columns: 2fr 3fr;
+  }
 `;
 
 const NotFound = styled.p`
   font-size: 24px;
+`;
+
+const Cards = styled.div`
+`;
+
+const Actions = styled.div`
+  top: 40px;
+  max-width: 720px;
+  height: 150px;
+  @media screen and (min-width: 720px) {
+    position: sticky;
+  }
 `;
 
 export default CardContainer;

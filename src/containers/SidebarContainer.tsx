@@ -11,6 +11,7 @@ const Sidebar = styled.div`
   display: grid;
   height: 150px;
   background-color: purple;
+  width: 100%;
 `;
 
 const Title = styled.h1`

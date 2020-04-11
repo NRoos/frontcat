@@ -50,14 +50,17 @@ const SelectWrap = styled.div`
   height: 50px;
   font-size: 20px;
   margin: 4px;
+  justify-self: center;
+  width: 100%;
 `;
 
 const Selector = styled.div`
   width: 95%;
-  max-width: 720px;
   display: grid;
+  max-width: 420px;
   grid-template-columns: 120px 1fr;
   align-items: center;
+  padding: 4px;
 `;
 
 export default FilterSelector;

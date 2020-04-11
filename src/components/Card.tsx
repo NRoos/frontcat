@@ -30,13 +30,11 @@ const CardWrap = styled.div`
   padding: 8px;
   margin: 10px;
   grid-template-areas:
-    "title origin"
-    "description description"
-    "temperament temperament";
-
-  grid-template-columns: 4fr 2fr;
-  width: 90%;
-  max-width: 700px;
+    "title"
+    "origin"
+    "description"
+    "temperament";
+  grid-template-columns: 1fr;
   box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.25);
 
   :hover {
@@ -45,13 +43,13 @@ const CardWrap = styled.div`
     transform: scale(1.03);
   }
 
-  @media screen and (max-width: 750px) {
+  @media screen and (min-width: 750px) {
     grid-template-areas:
-      "title"
-      "origin"
-      "description"
-      "temperament";
-    grid-template-columns: 1fr;
+      "title origin"
+      "description origin"
+      "temperament temperament";
+
+    grid-template-columns: 4fr 1fr;
   }
 `;
 
